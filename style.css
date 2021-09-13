@@ -1,0 +1,145 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.4rem;
+  padding-top: 2rem;
+}
+.container {
+  width: 100vw;
+  margin: 0 auto;
+}
+.table-content {
+  display: flex;
+  justify-content: space-around;
+}
+
+/*Buttons*/
+.btn {
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+.btn-primary {
+  background-color: rgb(114, 132, 214);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.btn-primary:hover {
+  background-color: rgb(103, 121, 200);
+}
+.btn-secondary {
+  background-color: teal;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+/*input*/
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.label {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+table {
+  border-spacing: 0 0.2rem;
+  text-overflow: ellipsis;
+  width: 50vw;
+}
+.table-heading {
+  background-color: rgb(84, 84, 235);
+  padding: 1rem;
+}
+.table-heading th {
+  padding: 1rem;
+}
+
+tr :nth-child(3) {
+  width: 20rem;
+  white-space: nowrap;
+}
+tr :nth-child(5) {
+  width: 10rem;
+  white-space: nowrap;
+  text-align: center;
+}
+
+tbody tr {
+  height: 4rem;
+  text-overflow: ellipsis;
+}
+
+.about {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  padding-right: 0.5rem;
+  height: 3.1rem;
+  width: 20rem;
+  overflow: hidden;
+}
+tr td {
+  height: 4rem;
+  overflow: hidden;
+  width: 25rem;
+  background-color: rgb(231, 186, 208);
+
+  padding-left: 1rem;
+}
+tr td:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+tr td:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.selected-row {
+  background-color: burlywood;
+}
+
+.form-group {
+  width: 30rem;
+  height: 60rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.form-group__content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.form-group__footer {
+  display: flex;
+  justify-content: center;
+  background-color: greenyellow;
+  padding: 1rem;
+}
+.form-group__footer .btn-primary {
+  margin-right: 1rem;
+}
+
+.form-group__item {
+  width: 80%;
+}
