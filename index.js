@@ -2,7 +2,10 @@ const data = getData()
 const table = document.getElementById("data");
 const rows = table.rows;
 let indexOfRow = null;
+const rowPerPage = 10;
+let currentPage = 1;
 showTable(data)
+setPagination()
 clickCol()
 editTableRaw()
 cancelTableRaw()
@@ -13,7 +16,7 @@ async function getData() {
 }
 // just receive data and make table from them
 async function showTable(data) {
-  await data.then(it => buildTable(it))
+  await data.then(it => buildTable(it.slice(rowPerPage * currentPage, rowPerPage * currentPage + rowPerPage)))
 }
 
 // build table from any data, they can be not only received from server but also sorted previosly
@@ -77,7 +80,7 @@ async function sort() {
       else {
         it.sort((a, b) => a.name[typeCol] > b.name[typeCol] ? 1 : -1)
       }
-      buildTable(it)
+      buildTable(it.slice(rowPerPage * currentPage, rowPerPage * currentPage + rowPerPage))
     })
 
   }
@@ -91,14 +94,22 @@ async function sort() {
       else {
         it.sort((a, b) => a.name[typeCol] < b.name[typeCol] ? 1 : -1)
       }
-      buildTable(it)
+      (it.slice(rowPerPage * currentPage, rowPerPage * currentPage + rowPerPage))
+      buildTable(it.slice(rowPerPage * currentPage, rowPerPage * currentPage + rowPerPage))
     })
   }
 
+  // set pagination buttons in started position
+  currentPage = 1
+  const prevButton = document.querySelector('.btn-active')
+  prevButton.classList.remove('btn-active')
+  const firstButton = document.getElementById('wrapper').children[0]
+  firstButton.classList.add('btn-active')
+
 }
 
-//add Event Listener on each row for opotunity to transfer data from row to form
 
+//add Event Listener on each row for opotunity to transfer data from row to form
 
 function dataRowsToForm() {
   for (let i = 0; i < rows.length; i += 1) {
@@ -115,7 +126,7 @@ function transferRowToInput() {
     indexOfRow = null
   }
   indexOfRow = this.rowIndex
-  console.log(rows[indexOfRow])
+
   rows[indexOfRow].classList.add('selected-row')
   const eyeColor = this.cells[4].getAttribute('data-color')
 
@@ -168,3 +179,40 @@ function cancelEditRaw() {
   document.getElementById('eyeColor').value = '';
 }
 
+async function setPagination() {
+
+  const wrapper = document.getElementById('wrapper')
+
+  wrapper.innerHTML = "";
+  await data.then(it => {
+    const lastPage = it.length % rowPerPage === 0 ? 0 : 1;
+    const amount = Math.ceil(it.length / rowPerPage) + lastPage;
+
+    for (let i = 1; i < amount; i += 1) {
+      let btn = pageButton(i, it);
+      wrapper.appendChild(btn);
+      console.log(wrapper)
+    }
+  })
+
+}
+
+function pageButton(page, items) {
+  let button = document.createElement('button');
+  button.innerText = page;
+  button.classList.add('btn')
+  button.classList.add('btn-secondary')
+  if (currentPage === page) {
+    button.classList.add('btn-active')
+  }
+
+  button.addEventListener('click', function () {
+    buildTable(items.slice(rowPerPage * page, rowPerPage * page + rowPerPage))
+    const prevButton = document.querySelector('.btn-active')
+    prevButton.classList.remove('btn-active')
+
+    button.classList.add('btn-active')
+    currentPage = page
+  })
+  return button
+}

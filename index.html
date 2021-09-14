@@ -9,18 +9,21 @@
   </head>
   <body>
     <div class="container table-content">
-      <table class="table" id="table-persons">
-        <thead>
-          <tr class="table-heading">
-            <th data-column="firstName" data-order="desc">name</th>
-            <th data-column="lastName" data-order="desc">lastName</th>
-            <th data-column="phone" data-order="desc">phone</th>
-            <th data-column="about" data-order="desc">about</th>
-            <th data-column="eyeColor" data-order="desc">eyeColor</th>
-          </tr>
-        </thead>
-        <tbody id="data"></tbody>
-      </table>
+      <div id="table-content_wrapper">
+        <table class="table" id="table-persons">
+          <thead>
+            <tr class="table-heading">
+              <th data-column="firstName" data-order="desc">name</th>
+              <th data-column="lastName" data-order="desc">lastName</th>
+              <th data-column="phone" data-order="desc">phone</th>
+              <th data-column="about" data-order="desc">about</th>
+              <th data-column="eyeColor" data-order="desc">eyeColor</th>
+            </tr>
+          </thead>
+          <tbody id="data"></tbody>
+        </table>
+        <div class="table-content__pagination" id="wrapper"></div>
+      </div>
       <div class="form-group">
         <div class="form-group__content">
           <div class="form-group__item">
