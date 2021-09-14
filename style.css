@@ -15,6 +15,17 @@ body {
   justify-content: space-around;
 }
 
+.table-content__hiding {
+  display: flex;
+  justify-content: flex-start;
+}
+.checkbox-item {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+.table-content__wrapper {
+  width: 50vw;
+}
 .table-content__pagination {
   width: 100%;
   margin-top: 1rem;
@@ -64,8 +75,18 @@ body {
 
 input,
 textarea {
+  outline: none;
   width: 100%;
   padding: 0.5rem;
+  border: 0;
+  border: 2px solid rgb(233, 233, 233);
+  border-radius: 6px;
+}
+
+input[type="checkbox"] {
+  display: block;
+  width: 1.3rem;
+  margin-top: 1rem;
 }
 
 .label {
