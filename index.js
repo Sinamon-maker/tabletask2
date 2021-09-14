@@ -101,22 +101,24 @@ async function sort() {
 
 
 function dataRowsToForm() {
-
-
   for (let i = 0; i < rows.length; i += 1) {
     rows[i].addEventListener('click', transferRowToInput)
-
-
   }
-
-
 }
 
 // function transfer row's data into form
 function transferRowToInput() {
+
+  // if another raw was clicked before wwhithout changing - remove class and return normal background
+  if (indexOfRow !== null) {
+    rows[indexOfRow].classList.remove('selected-row')
+    indexOfRow = null
+  }
   indexOfRow = this.rowIndex
+  console.log(rows[indexOfRow])
+  rows[indexOfRow].classList.add('selected-row')
   const eyeColor = this.cells[4].getAttribute('data-color')
-  console.log(eyeColor)
+
   document.getElementById('name').value = this.cells[0].innerHTML
   document.getElementById('lastName').value = this.cells[1].innerHTML
   document.getElementById('phone').value = this.cells[2].innerHTML
@@ -138,6 +140,9 @@ function editRaw() {
   let color = document.getElementById('eyeColor').value;
   rows[indexOfRow - 1].cells[4].setAttribute('data-color', color)
   rows[indexOfRow - 1].cells[4].children[0].style.backgroundColor = color
+
+  rows[indexOfRow].classList.remove('selected-row')
+  indexOfRow = null
   // remove values from's inputs
   document.getElementById('name').value = '';
   document.getElementById('lastName').value = '';
@@ -153,6 +158,7 @@ function cancelTableRaw() {
 }
 
 function cancelEditRaw() {
+  rows[indexOfRow].classList.remove('selected-row')
   indexOfRow = null
 
   document.getElementById('name').value = '';

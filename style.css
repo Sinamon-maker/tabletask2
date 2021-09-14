@@ -110,7 +110,7 @@ tr td:last-child {
   border-bottom-right-radius: 6px;
 }
 
-.selected-row {
+.selected-row td {
   background-color: burlywood;
 }
 
